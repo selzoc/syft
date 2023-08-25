@@ -3,6 +3,7 @@ package dotnet
 import (
 	"fmt"
 	"io"
+	"strings"
 
 	"github.com/saferwall/pe"
 
@@ -41,13 +42,13 @@ func parseDotnetPortableExecutable(_ file.Resolver, _ *generic.Environment, f fi
 	}
 
 	name := versionResources["FileDescription"]
-	if name == "" {
+	if strings.TrimSpace(name) == "" {
 		log.Tracef("unable to find FileDescription in PE file: %s", f.RealPath)
 		return nil, nil, nil
 	}
 
 	version := versionResources["FileVersion"]
-	if version == "" {
+	if strings.TrimSpace(name) == "" {
 		log.Tracef("unable to find FileVersion in PE file: %s", f.RealPath)
 		return nil, nil, nil
 	}
